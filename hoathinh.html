@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Xem Phim Hoạt Hình Trực Tuyến</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header cố định (Mức cơ bản & Trung bình) -->
+    <header class="header">
+        <div class="logo">
+            <h2>HOÀT HÌNH KIDS</h2>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm phim hoạt hình...">
+            <button>Tìm kiếm</button>
+        </div>
+    </header>
+
+    <!-- Head-link: Danh mục các liên kết trang -->
+    <nav class="head-link">
+        <a href="#" class="active">Trang chủ</a>
+        <a href="#">Phim Mới Cập Nhật</a>
+        <a href="#">Phim Xem Nhiều Nhất</a>
+        <a href="#">Hoạt Hình Thuyết Minh</a>
+        <a href="#">Liên hệ</a>
+    </nav>
+
+    <!-- Main Content Layout -->
+    <div class="content-wrapper">
+        <!-- Left Content: Danh sách menu các video (Thực hiện phát video khi bấm) -->
+        <aside class="left-content">
+            <h3>Danh Sách Phim</h3>
+            <ul class="video-list">
+                <li class="video-item active" data-type="youtube" data-src="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                    <strong>1. Doraemon - Tập 1 (Youtube)</strong>
+                </li>
+                <li class="video-item" data-type="video" data-src="https://www.w3schools.com/html/mov_bbb.mp4">
+                    <strong>2. Big Buck Bunny (Video file)</strong>
+                </li>
+                <li class="video-item" data-type="video" data-src="https://www.w3schools.com/html/movie.mp4">
+                    <strong>3. Bear Animation (Video file)</strong>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Right Content: Khung phát video chính -->
+        <main class="right-content">
+            <h2 id="video-title">Doraemon - Tập 1 (Youtube)</h2>
+            <div class="video-container">
+                <!-- Mặc định hiển thị YouTube Video -->
+                <iframe id="youtube-player" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                <video id="html5-player" controls style="display: none;">
+                    <source src="" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+            </div>
+            <p class="video-desc">Phim hoạt hình thuyết minh tiếng Việt chất lượng HD/FullHD dành cho lứa tuổi thiếu nhi.</p>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Website Xem Phim Hoạt Hình Dành Cho Trẻ Em. Bản quyền thuộc về Hoạt Hình Kids.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

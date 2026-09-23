@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    padding-top: 60px; /* Chừa vị trí cho fixed header */
+}
+
+/* 1. Header (Fixed Header - Mức trung bình) */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #ff5722;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.search-box input {
+    padding: 6px 12px;
+    border: none;
+    border-radiusDưới đây là mã nguồn hoàn chỉnh cho bài tập **Phát triển trang web xem hoạt hình trực tuyến** sử dụng **HTML5 & CSS3**. Code đã được tối ưu đầy đủ theo cả 3 mức độ (Cơ bản, Trung bình, Nâng cao) để bạn có thể copy và chạy ngay.
+
+---
+
+### File `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Xem Phim Hoạt Hình Trực Tuyến</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header (Cố định ở đỉnh - Mức trung bình) -->
+    <header class="header">
+        <div class="logo">
+            <h1>HOẠT HÌNH KIDS</h1>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm phim theo tên...">
+            <button>Tìm kiếm</button>
+        </div>
+    </header>
+
+    <!-- Head Link (Thanh điều hướng) -->
+    <nav class="head-link">
+        <ul>
+            <li><a href="#" class="active">Trang chủ</a></li>
+            <li><a href="#">Mới cập nhật</a></li>
+            <li><a href="#">Xem nhiều nhất</a></li>
+            <li><a href="#">Phim Thuyết Minh</a></li>
+            <li><a href="#">Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content (Layout chia 2 cột Left - Right) -->
+    <main class="main-content">
+        <!-- Left content: Menu danh sách video -->
+        <aside class="left-content">
+            <h3>Danh Sách Phim</h3>
+            <ul class="video-list">
+                <!-- Video HTML5 nội bộ -->
+                <li onclick="playVideo('video', '[https://www.w3schools.com/html/mov_bbb.mp4](https://www.w3schools.com/html/mov_bbb.mp4)', 'Big Buck Bunny (Video MP4)')" class="active-item">
+                    <span>1. Big Buck Bunny (Audio/HD)</span>
+                </li>
+                <!-- Video Youtube nhúng -->
+                <li onclick="playVideo('youtube', '[https://www.youtube.com/embed/L_LUpnjgPso](https://www.youtube.com/embed/L_LUpnjgPso)', 'Doraemon: Nobita và Những Bạn Nhỏ')">
+                    <span>2. Doraemon (Thuyết minh)</span>
+                </li>
+                <li onclick="playVideo('video', '[https://www.w3schools.com/html/movie.mp4](https://www.w3schools.com/html/movie.mp4)', 'Bear Story (Video MP4)')">
+                    <span>3. Bear Story (Video MP4)</span>
+                </li>
+                <li onclick="playVideo('youtube', '[https://www.youtube.com/embed/dQw4w9WgXcQ](https://www.youtube.com/embed/dQw4w9WgXcQ)', 'Phim Hoạt Hình Vui Nhộn')">
+                    <span>4. Hoạt hình vui nhộn (Youtube)</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Right content: Khung phát video chính -->
+        <section class="right-content">
+            <h2 id="video-title">Big Buck Bunny (Video MP4)</h2>
+            
+            <div class="player-wrapper">
+                <!-- Thẻ Video HTML5 -->
+                <video id="html5-player" controls style="display: block;">
+                    <source id="mp4-source" src="[https://www.w3schools.com/html/mov_bbb.mp4](https://www.w3schools.com/html/mov_bbb.mp4)" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+
+                <!-- Thẻ Iframe Youtube -->
+                <iframe id="youtube-player" src="" frameborder="0" allowfullscreen style="display: none;"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Website Phim Hoạt Hình Cho Trẻ Em - Chọn lọc & An toàn. Bản quyền thuộc về HoatHinhKids.</p>
+    </footer>
+
+    <!-- Script xử lý chọn video (Mức cơ bản & nâng cao tính tương tác) -->
+    <script>
+        function playVideo(type, src, title) {
+            document.getElementById('video-title').innerText = title;
+            const html5Player = document.getElementById('html5-player');
+            const youtubePlayer = document.getElementById('youtube-player');
+            const mp4Source = document.getElementById('mp4-source');
+
+            if (type === 'video') {
+                youtubePlayer.style.display = 'none';
+                youtubePlayer.src = ''; 
+                
+                mp4Source.src = src;
+                html5Player.load();
+                html5Player.style.display = 'block';
+                html5Player.play();
+            } else if (type === 'youtube') {
+                html5Player.pause();
+                html5Player.style.display = 'none';
+
+                youtubePlayer.src = src + "?autoplay=1";
+                youtubePlayer.style.display = 'block';
+            }
+
+            // Đổi style active cho danh sách bên trái
+            const items = document.querySelectorAll('.video-list li');
+            items.forEach(item => item.classList.remove('active-item'));
+            event.currentTarget.classList.add('active-item');
+        }
+    </script>
+</body>
+</html>
